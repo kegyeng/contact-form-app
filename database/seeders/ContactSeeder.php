@@ -20,8 +20,8 @@ class ContactSeeder extends Seeder
         for ($i = 0; $i < 20; $i++) {
             $contact = Contact::create([
                 'category_id' => $faker->randomElement($categoryIds),
-                'first_name' => $faker->firstName(),
-                'last_name' => $faker->lastName(),
+                'first_name' => $faker->lastName(),  // 姓
+                'last_name' => $faker->firstName(),  // 名
                 'gender' => $faker->numberBetween(1, 3),
                 'email' => $faker->safeEmail(),
                 'tel' => $faker->numerify('090########'),
