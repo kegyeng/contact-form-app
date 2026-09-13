@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TagRequest extends FormRequest
+class StoreTagRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,15 +14,14 @@ class TagRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique('tags', 'name');
-        $tag = $this->route('tag');
-
-        if ($tag instanceof Tag) {
-            $uniqueRule->ignore($tag);
-        }
-
         return [
-            'name' => ['bail', 'required', 'string', 'max:50', $uniqueRule],
+            'name' => [
+                'bail',
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('tags', 'name'),
+            ],
         ];
     }
 

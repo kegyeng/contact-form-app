@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/tags/{tag}', [TagController::class, 'destroy'])
         ->name('admin.tags.destroy');
-    Route::get('/contacts/export', [AdminController::class, 'export'])
+    Route::get('/contacts/export', [ContactController::class, 'export'])
         ->name('admin.contacts.export');
 });
 
@@ -39,5 +39,5 @@ Route::post('/contacts/confirm', [ContactController::class, 'confirm'])
 Route::post('/contacts', [ContactController::class, 'store'])
     ->name('contacts.store');
 
-Route::view('/thanks', 'contact.thanks')
+Route::get('/thanks', [ContactController::class, 'thanks'])
     ->name('contacts.thanks');

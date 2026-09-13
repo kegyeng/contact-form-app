@@ -11,7 +11,11 @@
         <div class="max-w-7xl mx-auto">
             <!-- Adminタイトル -->
             <h2 class="text-center text-2xl font-serif text-amber-900 mb-6">Admin</h2>
-
+            @foreach (['keyword', 'gender', 'category_id', 'date'] as $field)
+                @error($field)
+                    <p class="mb-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            @endforeach
             <!-- 検索フォーム -->
             <div class="mb-4">
                 <form class="flex flex-wrap items-center gap-3" action="/admin" method="get">
