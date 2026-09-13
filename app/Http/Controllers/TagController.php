@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TagRequest;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class TagController extends Controller
 {
-    public function store(TagRequest $request): RedirectResponse
+    public function store(StoreTagRequest $request): RedirectResponse
     {
         Tag::create($request->validated());
 
@@ -21,7 +22,7 @@ class TagController extends Controller
         return view('admin.tags.edit', compact('tag'));
     }
 
-    public function update(TagRequest $request, Tag $tag): RedirectResponse
+    public function update(UpdateTagRequest $request, Tag $tag): RedirectResponse
     {
         $tag->update($request->validated());
 
